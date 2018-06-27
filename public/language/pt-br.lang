@@ -1,0 +1,39 @@
+<?php
+
+main = 'Menu'
+
+$home = 'Inicio'
+$perfil = 'Perfil'
+$searchPlayer = 'Procurar Jogador'
+$searchPlace = 'Procurar Local'
+$sendInvite = 'Enviar Convite'
+$futureWorks = 'Trabalhos Futuros'
+
+$logout = 'Sair'
+$english = 'Ingles'
+$spanish = 'Espanhol'
+$portuguese = 'Portugues'
+
+$player = 'Jogador'
+$place = 'Local'
+$events = 'Eventos'
+
+$fullname = 'Nome'
+$address = 'Endereco'
+    
+$search = 'Buscar'
+$playersName = 'Nome do Jogador'
+$state = 'Estado'
+$city = 'Canoas'
+$submit = 'Enviar'
+$playersAndCities = 'Jogadores e Cidades'
+    
+$places = 'Locais'
+$enterTheCity = 'Insira a Cidade'
+    
+$email = 'e-mail'
+$emailAddress = 'Endereco de e-mail'
+
+$goers = 'Frequentadores'
+    
+?>

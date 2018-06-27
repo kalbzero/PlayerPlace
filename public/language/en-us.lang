@@ -1,0 +1,39 @@
+<?php
+
+main = 'main'
+
+$home = 'home'
+$perfil = 'perfil'
+$searchPlayer = 'Search Player'
+$searchPlace = 'Search Place'
+$sendInvite = 'Send Invite'
+$futureWorks = 'Future Works'
+
+$logout = 'Logout'
+$english = 'English'
+$spanish = 'Spanish'
+$portuguese = 'Portuguese'
+
+$player = 'Player'
+$place = 'Place'
+$events = 'Events'
+
+$fullname = 'Fullname'
+$address = 'Address'
+    
+$search = 'Search'
+$playersName = 'Player\'s Name'
+$state = 'State'
+$city = 'City'
+$submit = 'Submit'
+$playersAndCities = 'Players&Cities'
+    
+$places = 'Places'
+$enterTheCity = 'Enter the City'
+    
+$email = 'Email'
+$emailAddress = 'Email Address'
+
+$goers = 'Goers'
+    
+?>

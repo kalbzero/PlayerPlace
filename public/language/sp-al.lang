@@ -1,0 +1,39 @@
+<?php
+
+main = 'principal'
+
+$home = 'principio'
+$perfil = 'perfil'
+$searchPlayer = 'Buscar Jugador'
+$searchPlace = 'Buscar Local'
+$sendInvite = 'Enviar Invitación'
+$futureWorks = 'Trabajos Futuros'
+
+$logout = 'Cerrar'
+$english = 'Ingles'
+$spanish = 'Espanol'
+$portuguese = 'Portugues'
+
+$player = 'Jugador'
+$place = 'Local'
+$events = 'Eventos'
+
+$fullname = 'Nombre'
+$address = 'Direccion'
+    
+$search = 'Buscar'
+$playersName = 'Nombre del Jugador'
+$state = 'Estado'
+$city = 'Ciudad'
+$submit = 'Enviar'
+$playersAndCities = 'Jugadores&Ciudades'
+    
+$places = 'Lugares'
+$enterTheCity = 'Insertar'
+    
+$email = 'E-mail'
+$emailAddress = 'Direccion del e-mail'
+
+$goers = 'Asistentes'
+
+?>
