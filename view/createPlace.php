@@ -3,7 +3,7 @@
   <head> 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>PlayerPlace - Search Player</title>
+    <title>PlayerPlace - Create Placer</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -27,17 +27,18 @@
   </head>
   <body>
 
+      <?php 
+      if(isset($_SESSION['msg'])){
+          echo $_SESSION['msg'];
+          unset($_SESSION['msg']);
+      }
+      ?>
     <header class="header">   
       <nav class="navbar navbar-expand-lg">
         <div class="search-panel">
           <div class="search-inner d-flex align-items-center justify-content-center">
             <div class="close-btn">Close <i class="fa fa-close"></i></div>
-            <form id="searchForm" action="#">
-              <div class="form-group">
-                <input type="search" name="search" placeholder="What are you searching for...">
-                <button type="submit" class="submit">Search</button>
-              </div>
-            </form>
+            
           </div>
         </div>
         <div class="container-fluid d-flex align-items-center justify-content-between">
@@ -78,7 +79,7 @@
         <ul class="list-unstyled">
                 <li><a href="index.php"> <i class="icon-home"></i>Home </a></li>
                 <li><a href="perfil.php"> <i class="icon-grid"></i>Perfil </a></li>
-                <li class="active"><a href="searchPlayer.php"> <i class="fa fa-bar-chart"></i>Search Player </a></li>
+                <li><a href="searchPlayer.php"> <i class="fa fa-bar-chart"></i>Search Player </a></li>
                 <li><a href="map.php"> <i class="icon-padnote"></i>Search Place </a></li>
                 <li><a href="sendInvite.php"> <i class="icon-logout"></i>Send Invite </a></li>
         </ul><span class="heading">Future Works</span>
@@ -93,7 +94,7 @@
       <div class="page-content">
         <div class="page-header">
           <div class="container-fluid">
-            <h2 class="h5 no-margin-bottom">Search Player</h2>
+            <h2 class="h5 no-margin-bottom">Place</h2>
           </div>
         </div>
         <section class="no-padding-top no-padding-bottom">
@@ -101,70 +102,49 @@
             <div class="row">
               
               <!-- content-->
-              <?php
-                  include_once('../conexao.php');
-                  $result_players = "SELECT * FROM players";
-                  $resultado_players = mysqli_query($conn, $result_players);
-                  while($row_player = mysqli_fetch_assoc($resultado_players)){
-              ?>
-                
-              <div class="col-lg-12">                           
+              <div class="col-lg-12">
                 <div class="block">
-                  <div class="title"><strong>Search</strong></div>
+                  <div class="title"><strong class="d-block">Create</strong></div>
                   <div class="block-body">
-                    <form class="form-inline">
+                    <form name="formCreatePlace" method="POST" action="salva_places.php">
                       <div class="form-group">
-                        <label for="inlineFormInput" class="sr-only">Name</label>
-                        <input id="inlineFormInput" type="text" placeholder="Player's name" class="mr-sm-3 form-control">
+                        <label label="name" class="form-control-label">Name</label>
+                        <input id="name" name="name" type="text" placeholder="Name's Place" class="form-control">
                       </div>
+                        
                       <div class="form-group">
-                        <label for="inlineFormInputGroup" class="sr-only">State</label>
-                        <select name="account" class="mr-sm-3 form-control">
-                            <option>RS</option>
-                            <option>SC</option>
-                            <option>PR</option>
-                            <option>SP</option>
-                          </select>
+                        <label label="address" class="form-control-label">Address</label>
+                        <input id="address" name="address" type="text" placeholder="Address' Place" class="form-control">
                       </div>
+                      
                       <div class="form-group">
-                        <label for="inlineFormInputGroup" class="sr-only">City</label>
-                        <input id="inlineFormInputGroup" type="text" placeholder="Enter the City" class="mr-sm-3 form-control form-control">
+                        <label label="lat" class="form-control-label">Latitude</label>
+                        <input id="lat" name="lat" type="text" placeholder="Google Maps Latitude" class="form-control">
                       </div>
+                        
                       <div class="form-group">
-                        <input type="submit" value="Submit" class="btn btn-primary">
+                        <label label="lng" class="form-control-label">Longitude</label>
+                        <input id="lng" name="lng" type="text" placeholder="Google Maps Longitude" class="form-control">
+                      </div>
+                        
+                      <div class="form-group">
+                        <label label="type" class="form-control-label">Type</label>
+                        <input id="type" name="type" type="text" placeholder="Ex: Shopping, Park ..." class="form-control">
+                      </div>
+                        
+                      <div class="form-group">
+                        <label label="hours" class="form-control-label">Hours</label>
+                        <input id="hours" name="hours" type="text" placeholder="Weekday and Hour" class="form-control">
+                      </div>
+                        
+                      <div class="form-group">       
+                        <input type="submit" name="submitCreatePlace" value="Send" class="btn btn-primary">
                       </div>
                     </form>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-12">
-                <div class="block">
-                  <div class="title"><strong>Players & Cities</strong></div>
-                  <div class="table-responsive"> 
-                    <table class="table table-striped table-hover">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>Full Name</th>
-                          <th>City</th>
-                          <th>State</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td><a href="perfilUser.php"><?php echo $row_player['fullname'] ?></a></td>
-                          <td><?php echo $row_player['city'] ?></td>
-                          <td><?php echo $row_player['state'] ?></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-                <?php
-                    }
-                ?>
+            
               <!-- content-->
 
             </div>

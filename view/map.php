@@ -120,7 +120,10 @@
                         <input id="inlineFormInputGroup" type="text" placeholder="Enter the City" class="mr-sm-3 form-control form-control">
                       </div>
                       <div class="form-group">
-                        <input type="submit" value="Submit" class="btn btn-primary">
+                        <input type="submit" value="Submit" class="btn btn-primary"> 
+                      </div>
+                      <div class="form-group">
+                          <a id="createPlace" href="createPlace.php" class="btn btn-success ">Create</a>
                       </div>
                     </form>
                   </div>

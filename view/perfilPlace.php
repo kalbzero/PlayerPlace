@@ -102,9 +102,14 @@
               
               <!-- content-->
               <div class="block col-lg-12">
+                  <div  class="title" style="display: none;"></div>
                   <div class="title"><strong class="d-block">Name</strong><span class="d-block">ParkShopping Canoas</span></div>
                   <div class="title"><strong class="d-block">Address</strong><span class="d-block">Avenida Farroupilha, 4545 - Mal. Rondon, Canoas - RS, 92020-475</span></div>
+                  <div class="title"><strong class="d-block">Latitude</strong><span class="d-block">-29.19234678</span></div>
+                  <div class="title"><strong class="d-block">Longitude</strong><span class="d-block">-52.19283744</span></div>
                   <div class="title"><strong class="d-block">Hours</strong><span class="d-block">Segunda 20h00, Terca 19h00, Quarta 19h00, Quinta 19h30, Sexta 18h30, Sabado 15h00</span></div>
+                  <input type="submit" name="submitEditPlace" value="Edit" class="btn btn-info">
+                  <input type="submit" name="submitDeletePlace" value="Delete" class="btn btn-danger">
               </div>
               <div class="block col-lg-12">
                   <div class="title"><strong class="d-block">Goers</strong></div>
