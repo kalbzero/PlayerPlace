@@ -1,3 +1,11 @@
+<?php 
+session_start();
+include_once("../conexao.php");
+$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+$result_player = "SELECT * FROM players WHERE id='$id'";
+$resultado_player = mysqli_query($conn, $result_player);
+$row_player = mysqli_fetch_assoc($resultado_player);
+?>
 <!DOCTYPE html>
 <html>
   <head> 
@@ -153,7 +161,7 @@
                       <tbody>
                         <tr>
                           <th scope="row">1</th>
-                          <td><a href="perfilUser.php"><?php echo $row_player['fullname'] ?></a></td>
+                          <td><a href="perfilUser.php?id==<?php echo $row_player['id']?>"><?php echo $row_player['fullname'] ?></a></td>
                           <td><?php echo $row_player['city'] ?></td>
                           <td><?php echo $row_player['state'] ?></td>
                         </tr>

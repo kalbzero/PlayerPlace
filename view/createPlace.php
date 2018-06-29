@@ -3,7 +3,7 @@
   <head> 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>PlayerPlace - Create Placer</title>
+    <title>PlayerPlace - Create Place</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -29,7 +29,7 @@
 
       <?php 
       if(isset($_SESSION['msg'])){
-          echo $_SESSION['msg'];
+          //echo $_SESSION['msg'];
           unset($_SESSION['msg']);
       }
       ?>
@@ -106,7 +106,7 @@
                 <div class="block">
                   <div class="title"><strong class="d-block">Create</strong></div>
                   <div class="block-body">
-                    <form name="formCreatePlace" method="POST" action="salva_places.php">
+                    <form name="formCreatePlace" method="POST" action="save_places.php">
                       <div class="form-group">
                         <label label="name" class="form-control-label">Name</label>
                         <input id="name" name="name" type="text" placeholder="Name's Place" class="form-control">

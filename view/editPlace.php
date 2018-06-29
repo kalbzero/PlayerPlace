@@ -11,7 +11,7 @@ $row_place = mysqli_fetch_assoc($resultado_place);
   <head> 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>PlayerPlace - Player</title> 
+    <title>PlayerPlace - Edit Place</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -35,17 +35,18 @@ $row_place = mysqli_fetch_assoc($resultado_place);
   </head>
   <body>
 
+      <?php 
+      if(isset($_SESSION['msg'])){
+          //echo $_SESSION['msg'];
+          unset($_SESSION['msg']);
+      }
+      ?>
     <header class="header">   
       <nav class="navbar navbar-expand-lg">
         <div class="search-panel">
           <div class="search-inner d-flex align-items-center justify-content-center">
             <div class="close-btn">Close <i class="fa fa-close"></i></div>
-            <form id="searchForm" action="#">
-              <div class="form-group">
-                <input type="search" name="search" placeholder="What are you searching for...">
-                <button type="submit" class="submit">Search</button>
-              </div>
-            </form>
+            
           </div>
         </div>
         <div class="container-fluid d-flex align-items-center justify-content-between">
@@ -109,54 +110,49 @@ $row_place = mysqli_fetch_assoc($resultado_place);
             <div class="row">
               
               <!-- content-->
-              <div class="block col-lg-12">
-                  <form onsubmit="" name="formDeletePlace" method="POST" action="delete_places.php">
+              <div class="col-lg-12">
+                <div class="block">
+                  <div class="title"><strong class="d-block">Edit</strong></div>
+                  <div class="block-body">
+                    <form name="formUpdatePlace" method="POST" action="edit_places.php">
+                      <div class="form-group">
+                        <input id="id" name="id" type="hidden" class="form-control" value = "<?php echo $row_place['id'];?>">
+                          
+                        <label label="name" class="form-control-label">Name</label>
+                        <input id="name" name="name" type="text" placeholder="Name's Place" class="form-control" value = "<?php echo $row_place['name'];?>">
+                      </div>
+                        
+                      <div class="form-group">
+                        <label label="address" class="form-control-label">Address</label>
+                        <input id="address" name="address" type="text" placeholder="Address' Place" class="form-control" value = "<?php echo $row_place['address'];?>">
+                      </div>
                       
-                      <input id="id" name="id" type="text" value="<?php echo $row_place['id']?>" style="display: none;">
-                      <div class="title"><strong class="d-block">Name</strong><?php echo '<span class="d-block">'.$row_place['name'].'</span>';?></div>
-                      <div class="title"><strong class="d-block">Address</strong><?php echo '<span class="d-block">'.$row_place['address'].'</span>';?></div>
-                      <div class="title"><strong class="d-block">Latitude</strong><?php echo '<span class="d-block">'.$row_place['lat'].'</span>';?></div>
-                      <div class="title"><strong class="d-block">Longitude</strong><?php echo '<span class="d-block">'.$row_place['lng'].'</span>';?></div>
-                      <div class="title"><strong class="d-block">Type</strong><?php echo '<span class="d-block">'.$row_place['type'].'</span>';?></div>
-                      <div class="title"><strong class="d-block">Hours</strong><?php echo '<span class="d-block">'.$row_place['hours'].'</span>';?></div>
-                      <a href="editPlace.php?id=<?php echo $row_place['id']?>" class="btn btn-info" role="button" value="Edit">Edit</a>
-                      <input type="submit" name="submitDeletePlace" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure?')">
-                  </form>
-              </div>
-              <div class="block col-lg-12">
-                  <div class="title"><strong class="d-block">Goers</strong></div>
-                  <div class="table-responsive"> 
-                    <table class="table table-striped table-hover">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>Full Name</th>
-                          <th>City</th>
-                          <th>State</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td><a href="perfilUser.php">Paulo Souza</a></td>
-                          <td>Porto Alegre</td>
-                          <td>RS</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Joao Pereira</td>
-                          <td>Porto Alegre</td>
-                          <td>RS</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Jose Santos</td>
-                          <td>Porto Alegre</td>
-                          <td>RS</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                      <div class="form-group">
+                        <label label="lat" class="form-control-label">Latitude</label>
+                        <input id="lat" name="lat" type="text" placeholder="Google Maps Latitude" class="form-control" value = "<?php echo $row_place['lat'];?>">
+                      </div>
+                        
+                      <div class="form-group">
+                        <label label="lng" class="form-control-label">Longitude</label>
+                        <input id="lng" name="lng" type="text" placeholder="Google Maps Longitude" class="form-control" value = "<?php echo $row_place['lng'];?>">
+                      </div>
+                        
+                      <div class="form-group">
+                        <label label="type" class="form-control-label">Type</label>
+                        <input id="type" name="type" type="text" placeholder="Ex: Shopping, Park ..." class="form-control" value = "<?php echo $row_place['type'];?>">
+                      </div>
+                        
+                      <div class="form-group">
+                        <label label="hours" class="form-control-label">Hours</label>
+                        <input id="hours" name="hours" type="text" placeholder="Weekday and Hour" class="form-control" value = "<?php echo $row_place['hours'];?>">
+                      </div>
+                        
+                      <div class="form-group">       
+                        <input type="submit" name="submitUpdatePlace" value="Update" class="btn btn-primary">
+                      </div>
+                    </form>
                   </div>
+                </div>
               </div>
             
               <!-- content-->
@@ -184,13 +180,5 @@ $row_place = mysqli_fetch_assoc($resultado_place);
     <script src="../public/vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="../public/js/charts-home.js"></script>
     <script src="../public/js/front.js"></script>
-    <script language="javascript">
-        function deleteMe(){
-            if(!$('#confirm-delete').length){
-              $('body').append('<div class="modal" id="confirm-delete" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title bg-danger text-white">Delete</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><p>Are you sure you want erase forever???</p></div><div class="modal-footer"><button type="button" class="btn btn-sucess">Cancel</button><a class="btn btn-danger text-white" id="dataConfirmOK">Delete!</a></div></div></div></div>');
-              }
-        }
-        
-    </script>
   </body>
 </html>

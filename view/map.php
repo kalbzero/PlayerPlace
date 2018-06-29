@@ -213,7 +213,7 @@
               var linkText = document.createTextNode("Mais Infos");
               a.appendChild(linkText);
               a.title = "Clique Aqui";
-              a.href = "perfilPlace.php";
+              a.href = "perfilPlace.php?id="+id;
               infowincontent.appendChild(a);
                 
               var icon = customLabel[type] || {};

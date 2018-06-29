@@ -2,24 +2,22 @@
 session_start();
 include_once('../conexao.php');
 
-//Receber os dados do Create Place
-$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+//Receber os dados do Update Place
+$id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+$result_place = "DELETE FROM places WHERE id='$id'";
+$resultado_place = mysqli_query($conn, $result_place);
 
-//Deletando o id no BD
 if(!empty($id)){
-    $result_places = "DELETE INTO places WHERE id='$id'";
-    $concatenado_places = mysqli_query($conn, $result_places);
-    if(mysqli_insert_id($conn)){
-        $_SESSION['msg'] = "<span style= 'color: green';>Local Salvo com Sucesso!</span>";
+    if(mysqli_affected_rows($conn)){
+        $_SESSION['msg'] = "<span class='d-block';>Local Deletado com Sucesso!</span>";
         header("Location: map.php");
 
     }else{
-        $_SESSION['msg'] = "<span style= 'color: red';>Erro: Local Nao Foi Salvo!</span>";
-        header("Location: perfilPlace.php");
-    
-    }
+        $_SESSION['msg'] = "<span class='d-block';>Erro!!!</span>";
+        header("Location: perfil.php");
+    } 
 }else{
-    $_SESSION['msg'] = "<span style= 'color: red';>Erro: Nada de Exaltações!!!</span>";
+    $_SESSION['msg'] = "<span class='d-block';>Nada de Exaltacoes!!!</span>";
     header("Location: index.php");
 }
 
