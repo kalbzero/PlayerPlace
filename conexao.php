@@ -1,8 +1,8 @@
 <?php
-    $servidor = "us-cdbr-iron-east-04.cleardb.net";
-    $usuario = "b39f29d17929c7";
-    $senha = "9e9fe049";
-    $dbname = "heroku_8d4677785da1509";
+    $servidor = "localhost";
+    $usuario = "root";
+    $senha = "";
+    $dbname = "playerplace";
 
     //criar a conexao
     $conn = mysqli_connect($servidor, $usuario, $senha, $dbname);
