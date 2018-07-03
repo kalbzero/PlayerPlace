@@ -106,10 +106,10 @@
                 <div class="block">
                   <div class="title"><strong class="d-block">Send Invite</strong></div>
                   <div class="block-body">
-                    <form>
+                    <form name="formSendEmail" method="POST" action="../createInvite.php">
                       <div class="form-group">
                         <label class="form-control-label">Email</label>
-                        <input type="email" placeholder="Email Address" class="form-control">
+                        <input type="email" id="email" name="email" placeholder="Email Address" class="form-control">
                       </div>
                       <div class="form-group">       
                         <input type="submit" value="Send" class="btn btn-primary">

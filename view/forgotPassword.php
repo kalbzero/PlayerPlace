@@ -36,13 +36,14 @@
             <div class="col-lg-6 bg-white">
               <div class="form d-flex align-items-center">
                 <div class="content">
-                  <form method="get" class="form-validate">
-                    <strong class="d-block">Forgot Password</strong>
+                  <form method="POST" action="../resetPassword.php" class="form-validate">
+                      <strong class="d-block">Forgot Password</strong><br>
                     <div class="form-group">
-                      <input id="login-username" type="text" name="loginUsername" required data-msg="Please enter your email" class="input-material">
+                      <input id="email" type="email" name="email" required data-msg="Please enter your email" class="input-material">
                       <label for="login-username" class="label-material">Email</label>
-                    </div><a id="login" href="index.html" class="btn btn-primary">Send</a>
-                    <!-- This should be submit button but I replaced it with <a> for demo purposes-->
+                    </div>
+                    <input type="submit" value="Send" name="ok" class="btn btn-primary">
+                    
                   </form>
                 </div>
               </div>
