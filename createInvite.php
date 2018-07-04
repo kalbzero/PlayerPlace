@@ -2,7 +2,7 @@
 session_start();
 include_once('conexao.php');
 
-//Verifica se o e-mail não está cadastrado no BD
+//Pega as informações da página e faz a pesquisa no BD
 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
 $player = "player@email.com"; //Jogador cadastrado que enviou o convite.
 $playerplace = "PlayerPlace";
@@ -14,14 +14,14 @@ $resultado_player = mysqli_query($conn, $result_player);
 //Retorna o numero de linhas da pesquisa acima
 $row = $resultado_player->fetch_row();
 
-//A
+//Verificar se o email ja esta cadastrado na rede social
 if($row[0] > 0){
     $_SESSION['msg'] = "O email '$email' ja esta cadastrado!";
     header("Location: view/sendInvite.php");
     
 }else{
     //Chave criptografada para fazer o cadastro
-    $token = md5(md5($player));
+    $token = md5(md5($player)); //Usando MD5 apenas para teste e apresentação
     
     //Tempo de 24 horas para o convite expirar
     $expires = new DateTime('America/Sao_Paulo');
@@ -29,15 +29,16 @@ if($row[0] > 0){
     $aux_data = $expires->format('Y-m-d H:i:s');
     
     //Deletar qualquer outro token de convite que tenha o email convidado
+    //O comando certo seria INATIVAR aquele convite atraves de uma variavel boolean
     $result_invite = "DELETE FROM sendinvites WHERE emailInvite='$email'";
     $resultado_invite = mysqli_query($conn, $result_invite);
     
     //Enviar email e depois salvar no banco
     $assunto = "Convite para cadastro no PlayerPlace";
-    $linkRegister = "http://localhost/playerplace.com/register.php?token='$token'";
+    $linkRegister = "http://localhost/playerplace.com/view/register.php?token='$token'&email='$player'";
     echo $linkRegister;
     
-    //No arquivo, pode elaborar uma página html, para ficar parecido com os emails empresariais.
+    //No arquivo, pode elaborar uma página html, para ficar parecido com os emails empresariais e mais estiloso.
     $arquivo = "
         Você foi convidado a participar da rede social playerplace!\n Quem te convidou foi o '$player', que ja faz parte da PlayerPlace!\n
         Acesse o link para ser redirecionado a página de cadastro!\n\n
@@ -47,7 +48,7 @@ if($row[0] > 0){
     
     $headers = 'From: $playerplace <$playerplaceEmail>';
      
-    
+    //mail php não funciona em servidor local (localhost) no Win10, precisa ser numa versão de servidor do Windows ou Servidor em Nuvem.
     //$enviaremail = mail($email, $assunto, $arquivo, $headers);
     
     //if($enviaremail){
