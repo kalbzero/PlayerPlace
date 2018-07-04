@@ -13,7 +13,7 @@ $result_player = "INSERT INTO players (fullname, gender, birthDay, email, passwo
                 '".$dados ['gender']."',
                 '".$dados ['birthDay']."',
                 '".$dados ['email']."',
-                '".$dados ['password']."',
+                '".md5($dados ['password'])."',
                 '".$dados ['Street']."',
                 '".$dados ['number']."',
                 '".$dados ['neighborhood']."',
