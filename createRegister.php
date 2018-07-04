@@ -10,11 +10,11 @@ $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 $result_player = "INSERT INTO players (fullname, gender, birthDay, email, password, Street, number,neighborhood, city, state, zip, verifyAccount)
                 VALUES
                 ('".$dados ['fullname']."',
-                '".$dados ['gender']."',
+                '".$dados ['optionsRadios']."',
                 '".$dados ['birthDay']."',
                 '".$dados ['email']."',
                 '".md5($dados ['password'])."',
-                '".$dados ['Street']."',
+                '".$dados ['street']."',
                 '".$dados ['number']."',
                 '".$dados ['neighborhood']."',
                 '".$dados ['city']."',
