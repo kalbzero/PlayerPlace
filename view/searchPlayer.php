@@ -113,7 +113,7 @@ $row_player = mysqli_fetch_assoc($resultado_player);
                   include_once('../conexao.php');
                   $result_players = "SELECT * FROM players";
                   $resultado_players = mysqli_query($conn, $result_players);
-                  while($row_player = mysqli_fetch_assoc($resultado_players)){
+                  
               ?>
                 
               <div class="col-lg-12">                           
@@ -158,21 +158,26 @@ $row_player = mysqli_fetch_assoc($resultado_player);
                           <th>State</th>
                         </tr>
                       </thead>
+                       
                       <tbody>
+                           <?php while($row_player = mysqli_fetch_assoc($resultado_players)){?>
                         <tr>
-                          <th scope="row">1</th>
-                          <td><a href="perfilUser.php?id==<?php echo $row_player['id']?>"><?php echo $row_player['fullname'] ?></a></td>
+                            
+                          <th scope="row"><?php echo $row_player['id']?></th>
+                          <td><a href="perfilUser.php?id=<?php echo $row_player['id']?>"><?php echo $row_player['fullname'] ?></a></td>
                           <td><?php echo $row_player['city'] ?></td>
                           <td><?php echo $row_player['state'] ?></td>
                         </tr>
+                          <?php
+                            }
+                        ?>
                       </tbody>
+                        
                     </table>
                   </div>
                 </div>
               </div>
-                <?php
-                    }
-                ?>
+                
               <!-- content-->
 
             </div>
