@@ -1,3 +1,29 @@
+<?php
+session_start();
+include_once('../conexao.php');
+
+$token = $_GET["token"];
+$token = str_replace("'","", $token);
+$email = $_GET["email"];
+$email = str_replace("'","", $email);
+
+//Consultar o convite no BD
+$result_invite = "SELECT COUNT(*) FROM sendinvites WHERE emailPlayer='$email' AND token='$token'";
+$resultado_invite = mysqli_query($conn, $result_invite);
+
+//Retorna o numero de linhas da pesquisa acima
+$row = $resultado_invite->fetch_row();
+
+//Verificar se o convite existe no BD
+if($row[0] > 0){
+    //Se exite, fica nessa pagina de cadastro
+}else{
+    $_SESSION['msg'] = "O email '$email' ja esta cadastrado!";
+    header("Location: login.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
   <head> 
@@ -38,30 +64,30 @@
             <div class="col-lg-6 bg-white">
               <div class="form d-flex align-items-center">
                 <div class="content">
-                  <form class="text-left form-validate">
+                  <form class="text-left form-validate" method="POST" action="../createRegister.php">
                   	<!-- Fullname -->
-                    <strong class="d-block">Register</strong>
+                    <strong class="d-block">Register</strong><br>
                     <div class="form-group-material">
-                      <input id="register-fullname" type="text" name="registerFullname" required data-msg="Please enter your fullname" class="input-material">
-                      <label for="register-fullname" class="label-material">Fullname</label>
+                      <input id="fullname" type="text" name="fullname" required data-msg="Please enter your fullname" class="input-material">
+                      <label for="fullname" class="label-material">Fullname</label>
                     </div>
                     <!-- Gender -->
                     <div class="form-group terms-conditions">
-                      <label for="register-gender" class="label-material">Gender <br></label>
+                      <label for="gender" class="label-material">Gender <br></label>
                       <div>
-                        <input id="optionsRadios1" type="radio" checked="" value="option1" name="optionsRadios">
+                        <input id="optionsRadios1" type="radio" checked="" value="M" name="optionsRadios">
                         <label for="optionsRadios1">Male</label>
                       </div>
                       <div>
-                        <input id="optionsRadios2" type="radio" value="option2" name="optionsRadios">
+                        <input id="optionsRadios2" type="radio" value="F" name="optionsRadios">
                         <label for="optionsRadios2">Female</label>
                       </div>
                     </div>
                     <!-- BirthDay -->
                     <div class="form-group-material">
-                    	<label for="register-birthday" class="label-material">Birthday</label>
+                    	<label for="birthday" class="label-material">Birthday</label>
                     	<div class="input-group date" data-provide="datepicker">
-						    <input type="text" class="form-control">
+						    <input type="text" name="birthDay" class="form-control">
 						    <div class="input-group-addon">
 						        <span class="glyphicon glyphicon-th"></span>
 						    </div>
@@ -70,66 +96,67 @@
                     
                     <!-- Email -->
                     <div class="form-group-material">
-                      <input id="register-email" type="email" name="registerEmail" required data-msg="Please enter a valid email address" class="input-material">
-                      <label for="register-email" class="label-material">Email Address</label>
+                      <input id="email" type="email" name="email" required data-msg="Please enter a valid email address" class="input-material">
+                      <label for="email" class="label-material">Email Address</label>
                     </div>
                     <!-- Password -->
                     <div class="form-group-material">
-                      <input id="register-password" type="password" name="registerPassword" required data-msg="Please enter your password" class="input-material">
-                      <label for="register-password" class="label-material">Password</label>
+                      <input id="password" type="password" name="password" required data-msg="Please enter your password" class="input-material">
+                      <label for="password" class="label-material">Password</label>
                     </div>
                     <!-- Address -->
-                    <label for="register-address" class="label-material">Address</label>
+                    <label for="address" class="label-material">Address</label>
                     <div class="form-group-material">
-	                	<input id="register-street" type="text" name="registerStreet" required data-msg="Please enter your street" class="input-material">
-	                	<label for="register-street" class="label-material">Street</label>
+	                	<input id="street" type="text" name="street" required data-msg="Please enter your street" class="input-material">
+	                	<label for="street" class="label-material">Street</label>
 	                </div>
 	                <div class="form-group-material">
-	                	<input id="register-number" type="text" name="registerNumber" required data-msg="Please enter your number" class="input-material">
-	                	<label for="register-number" class="label-material">Number</label>
+	                	<input id="number" type="text" name="number" required data-msg="Please enter your number" class="input-material">
+	                	<label for="number" class="label-material">Number</label>
                     	
                     </div>
                     <div class="form-group-material">
-	                	<input id="register-neighborhood" type="text" name="registerNeighborhood" required data-msg="Please enter your neighborhood" class="input-material">
-	                	<label for="register-neighborhood" class="label-material">Neighborhood</label>
+	                	<input id="neighborhood" type="text" name="neighborhood" required data-msg="Please enter your neighborhood" class="input-material">
+	                	<label for="neighborhood" class="label-material">Neighborhood</label>
                     	
                     </div>
                     <div class="form-group-material">
-	                	<input id="register-city" type="text" name="registerCity" required data-msg="Please enter your City" class="input-material">
-	                	<label for="register-city" class="label-material">City</label>
+	                	<input id="city" type="text" name="city" required data-msg="Please enter your City" class="input-material">
+	                	<label for="city" class="label-material">City</label>
                     	
                     </div>
                     <div class="form-group-material">
-	                	<input id="register-state" type="text" name="registerState" required data-msg="Please enter your State" class="input-material">
-	                	<label for="register-state" class="label-material">State</label>
+	                	<input id="state" type="text" name="state" required data-msg="Please enter your State" class="input-material">
+	                	<label for="state" class="label-material">State</label>
                     	
                     </div>
                     <div class="form-group-material">
-	                	<input id="register-region" type="text" name="registerRegion" required data-msg="Please enter your region" class="input-material">
-	                	<label for="register-region" class="label-material">Region</label>
+	                	<input id="region" type="text" name="region" required data-msg="Please enter your region" class="input-material">
+	                	<label for="region" class="label-material">Region</label>
                     	
                     </div>
                     <div class="form-group-material">
-	                	<input id="register-country" type="text" name="registerCountry" required data-msg="Please enter your country" class="input-material">
-	                	<label for="register-country" class="label-material">Country</label>
+	                	<input id="country" type="text" name="country" required data-msg="Please enter your country" class="input-material">
+	                	<label for="country" class="label-material">Country</label>
                     	
                     </div>
                     <div class="form-group-material">
-	                	<input id="register-zip" type="text" name="registerZip" required data-msg="Please enter your zip" class="input-material">
-	                	<label for="register-zip" class="label-material">Zip</label>
+	                	<input id="zip" type="text" name="zip" required data-msg="Please enter your zip" class="input-material">
+	                	<label for="zip" class="label-material">Zip</label>
                     	
                     </div>
 
 
                     <!-- Terms and policy -->
                     <div class="form-group terms-conditions text-center">
-                      <input id="register-agree" name="registerAgree" type="checkbox" required value="1" data-msg="Your agreement is required" class="checkbox-template">
-                      <label for="register-agree">I agree with the terms and policy</label>
+                      <input id="agree" name="registerAgree" type="checkbox" required value="1" data-msg="Your agreement is required" class="checkbox-template">
+                      <label for="agree">I agree with the terms and policy</label>
                     </div>
                     <!-- Submit Button -->
                     <div class="form-group text-center">
                       <input id="register" type="submit" value="Register" class="btn btn-primary">
                     </div>
+                  </form>
                 </div>
               </div>
             </div>
